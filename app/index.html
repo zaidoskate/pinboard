@@ -10,13 +10,18 @@
   <div id="board"></div>
 
   <div id="new-pin">
-    <select id="pin-type">
-      <option value="text">Texto</option>
-      <option value="image">Foto (URL)</option>
-      <option value="audio">Audio (URL)</option>
-    </select>
-    <textarea id="pin-content" placeholder="Escribe o pega URL…"></textarea>
-    <button id="add-pin">Agregar Pin</button>
+    <!-- Botón para mostrar/ocultar el formulario -->
+    <button id="show-menu" class="plus-button">+</button>
+    
+    <div id="pin-form" class="pin-form" style="display: none;">
+      <select id="pin-type">
+        <option value="text">Texto</option>
+        <option value="image">Foto (URL)</option>
+        <option value="audio">Audio (URL)</option>
+      </select>
+      <textarea id="pin-content" placeholder="Escribe o pega URL…"></textarea>
+      <button id="add-pin">Agregar Pin</button>
+    </div>
   </div>
 
   <script src="app.js"></script>

@@ -1,13 +1,15 @@
+/* General */
 body {
     margin: 0;
     font-family: sans-serif;
-    background: #fff0f6;
+    background: #fff0f6;  /* Rosa suave */
     display: flex;
     flex-direction: column;
     align-items: center;
     min-height: 100vh;
   }
   
+  /* Estilo para el tablero */
   #board {
     display: flex;
     flex-wrap: wrap;
@@ -16,20 +18,28 @@ body {
     max-width: 960px;
   }
   
+  /* Estilo para los "pins" */
   .pin {
     background: #f5f5dc;
     border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     padding: 10px;
     width: 200px;
     word-wrap: break-word;
+    transition: transform 0.2s ease-in-out; /* Animación suave al interactuar */
   }
   
+  .pin:hover {
+    transform: scale(1.05);  /* Escala ligeramente el pin al pasar el ratón */
+  }
+  
+  /* Imágenes y audio dentro de los pins */
   .pin img, .pin audio {
     max-width: 100%;
     border-radius: 8px;
   }
   
+  /* Formulario para agregar un pin */
   #new-pin {
     position: fixed;
     bottom: 20px;
@@ -37,12 +47,66 @@ body {
     background: white;
     padding: 12px;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
   }
   
-  #new-pin textarea {
-    width: 200px;
+  /* Estilo del botón + */
+  .plus-button {
+    font-size: 40px;
+    width: 60px;
     height: 60px;
-    margin-top: 8px;
+    background-color: #fff0f6; /* Rosa suave */
+    color: #ff66b2; /* Rosa más intenso para el símbolo */
+    border: none;
+    border-radius: 50%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s; /* Animaciones suaves */
+  }
+  
+  .plus-button:hover {
+    background-color: #ff66b2;  /* Cambia a un rosa más fuerte */
+    color: white;  /* Cambia el color del símbolo a blanco */
+    transform: scale(1.1); /* Agranda el botón al pasar el ratón */
+  }
+  
+  /* Estilo del formulario que aparece al hacer clic */
+  .pin-form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out;  /* Transición suave */
+    max-width: 400px;  /* Hacer el formulario más ancho */
+  }
+  
+  #pin-form {
+    opacity: 1;
+  }
+  
+  #pin-form textarea, #pin-form select, #pin-form button {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    margin: 5px 0;
+  }
+  
+  #pin-form textarea {
+    width: 100%;  /* Que ocupe todo el espacio disponible */
+    height: 60px;
+    resize: none;  /* Desactivar redimensionamiento */
+  }
+  
+  #pin-form button {
+    background-color: #ff66b2;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  #pin-form button:hover {
+    background-color: #ff3385;
   }
   
