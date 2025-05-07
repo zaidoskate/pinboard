@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tablero de Pins</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="board"></div>
+
+  <div id="new-pin">
+    <select id="pin-type">
+      <option value="text">Texto</option>
+      <option value="image">Foto (URL)</option>
+      <option value="audio">Audio (URL)</option>
+    </select>
+    <textarea id="pin-content" placeholder="Escribe o pega URL…"></textarea>
+    <button id="add-pin">Agregar Pin</button>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

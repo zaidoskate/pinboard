@@ -1,0 +1,48 @@
+body {
+    margin: 0;
+    font-family: sans-serif;
+    background: #fff0f6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+  }
+  
+  #board {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    padding: 20px;
+    max-width: 960px;
+  }
+  
+  .pin {
+    background: #f5f5dc;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    padding: 10px;
+    width: 200px;
+    word-wrap: break-word;
+  }
+  
+  .pin img, .pin audio {
+    max-width: 100%;
+    border-radius: 8px;
+  }
+  
+  #new-pin {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: white;
+    padding: 12px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  #new-pin textarea {
+    width: 200px;
+    height: 60px;
+    margin-top: 8px;
+  }
+  
