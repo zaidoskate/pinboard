@@ -21,6 +21,7 @@ async function fetchPins() {
 
     // Contenido del pin
     if (p.type === 'text') {
+      div.classList.add('text-pin');
       div.textContent = p.content;
     } else if (p.type === 'image') {
       const img = document.createElement('img');
@@ -67,10 +68,12 @@ async function fetchPins() {
 
 document.getElementById('show-menu').addEventListener('click', () => {
   const pinForm = document.getElementById('pin-form');
-  const isHidden = pinForm.style.display === 'none';
-  pinForm.style.display = isHidden ? 'block' : 'none';
-  pinForm.style.opacity = isHidden ? '1' : '0';
+  const plusBtn = document.getElementById('show-menu');
+
+  pinForm.classList.toggle('show');
+  plusBtn.classList.toggle('rotate');
 });
+
 
 document.getElementById('add-pin').addEventListener('click', async () => {
   const type = document.getElementById('pin-type').value;
