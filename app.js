@@ -1,4 +1,4 @@
-const API = 'https://pinboard-ivkx.onrender.com';
+const API = 'https://pinboard-ivkx.onrender.com/pins';
 
 async function fetchPins() {
     const res = await fetch(API);
