@@ -78,10 +78,19 @@ document.getElementById('show-menu').addEventListener('click', () => {
 });
 
 document.getElementById('add-pin').addEventListener('click', async () => {
+  let content = document.getElementById('pin-content').value.trim();
   const type = document.getElementById('pin-type').value;
-  const content = document.getElementById('pin-content').value.trim();
+  
   if (!content) return alert('Agrega texto o URL');
-
+  
+  if (type === 'youtube') {
+    const match = content.match(/(?:youtube\.com\/.*v=|youtu\.be\/)([^&\n?#]+)/);
+    if (match && match[1]) {
+      content = match[1];
+    } else {
+      return alert('URL de YouTube no válida. Asegúrate de pegar un enlace como https://www.youtube.com/watch?v=ID o https://youtu.be/ID');
+    }
+  }
   await fetch(API, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
