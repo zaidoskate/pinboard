@@ -1,5 +1,9 @@
 const API = 'https://pinboard-ivkx.onrender.com/pins';
 
+function randomSize(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 async function fetchPins() {
   const res = await fetch(API);
   const pins = await res.json();
@@ -10,7 +14,12 @@ async function fetchPins() {
     const div = document.createElement('div');
     div.className = 'pin';
 
-    // Usar propiedades en minúsculas según JSON de la API
+    const w = randomSize(150, 300);
+    const h = randomSize(150, 300);
+    div.style.width = `${w}px`;
+    div.style.height = `${h}px`;
+
+    // Contenido del pin
     if (p.type === 'text') {
       div.textContent = p.content;
     } else if (p.type === 'image') {
@@ -22,26 +31,52 @@ async function fetchPins() {
       audio.controls = true;
       audio.src = p.content;
       div.appendChild(audio);
+    } else if (p.type === 'youtube') {
+      const iframe = document.createElement('iframe');
+      iframe.width = 0;
+      iframe.height = 0;
+      iframe.src = `https://www.youtube.com/embed/${p.content}?enablejsapi=1&controls=0`;
+      iframe.allow = 'autoplay';
+      div.appendChild(iframe);
+
+      const playBtn = document.createElement('button');
+      playBtn.textContent = '▶️ Escuchar audio';
+      playBtn.addEventListener('click', () => {
+        iframe.contentWindow.postMessage(
+          JSON.stringify({ event: 'command', func: 'playVideo' }),
+          '*'
+        );
+      });
+      div.appendChild(playBtn);
     }
+
+    const deleteBtn = document.createElement('button');
+    deleteBtn.textContent = '-';
+    deleteBtn.className = 'delete-btn';
+    deleteBtn.addEventListener('click', async () => {
+      if (confirm('¿Estás seguro de que quieres eliminar este pin?')) {
+        await fetch(`${API}/${p.id}`, { method: 'DELETE' });
+        fetchPins(); // Refrescar
+      }
+    });
+    div.appendChild(deleteBtn);
 
     board.appendChild(div);
   });
 }
 
-// Mostrar/ocultar formulario al hacer clic en el botón +
 document.getElementById('show-menu').addEventListener('click', () => {
   const pinForm = document.getElementById('pin-form');
   const isHidden = pinForm.style.display === 'none';
-  pinForm.style.display = isHidden ? 'block' : 'none';  // Toggle display
-  pinForm.style.opacity = isHidden ? '1' : '0';  // Transición de opacidad
+  pinForm.style.display = isHidden ? 'block' : 'none';
+  pinForm.style.opacity = isHidden ? '1' : '0';
 });
 
 document.getElementById('add-pin').addEventListener('click', async () => {
   const type = document.getElementById('pin-type').value;
   const content = document.getElementById('pin-content').value.trim();
   if (!content) return alert('Agrega texto o URL');
-  
-  // Enviar la nueva información del pin a la API
+
   await fetch(API, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -51,11 +86,9 @@ document.getElementById('add-pin').addEventListener('click', async () => {
   // Limpiar y ocultar el formulario
   document.getElementById('pin-content').value = '';
   document.getElementById('pin-form').style.display = 'none';
-  document.getElementById('pin-form').style.opacity = '0'; // Animación de ocultado
+  document.getElementById('pin-form').style.opacity = '0';
 
-  // Refrescar el tablero
   fetchPins();
 });
 
-// Cargar pins al iniciar
 document.addEventListener('DOMContentLoaded', fetchPins);

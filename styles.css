@@ -1,112 +1,35 @@
-/* General */
-body {
-    margin: 0;
-    font-family: sans-serif;
-    background: #fff0f6;  /* Rosa suave */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: 100vh;
-  }
-  
-  /* Estilo para el tablero */
-  #board {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 16px;
-    padding: 20px;
-    max-width: 960px;
-  }
-  
-  /* Estilo para los "pins" */
-  .pin {
-    background: #f5f5dc;
-    border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 10px;
-    width: 200px;
-    word-wrap: break-word;
-    transition: transform 0.2s ease-in-out; /* Animación suave al interactuar */
-  }
-  
-  .pin:hover {
-    transform: scale(1.05);  /* Escala ligeramente el pin al pasar el ratón */
-  }
-  
-  /* Imágenes y audio dentro de los pins */
-  .pin img, .pin audio {
-    max-width: 100%;
-    border-radius: 8px;
-  }
-  
-  /* Formulario para agregar un pin */
-  #new-pin {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: white;
-    padding: 12px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    text-align: center;
-  }
-  
-  /* Estilo del botón + */
-  .plus-button {
-    font-size: 40px;
-    width: 60px;
-    height: 60px;
-    background-color: #fff0f6; /* Rosa suave */
-    color: #ff66b2; /* Rosa más intenso para el símbolo */
-    border: none;
-    border-radius: 50%;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.3s; /* Animaciones suaves */
-  }
-  
-  .plus-button:hover {
-    background-color: #ff66b2;  /* Cambia a un rosa más fuerte */
-    color: white;  /* Cambia el color del símbolo a blanco */
-    transform: scale(1.1); /* Agranda el botón al pasar el ratón */
-  }
-  
-  /* Estilo del formulario que aparece al hacer clic */
-  .pin-form {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    opacity: 0;
-    transition: opacity 0.4s ease-in-out;  /* Transición suave */
-    max-width: 400px;  /* Hacer el formulario más ancho */
-  }
-  
-  #pin-form {
-    opacity: 1;
-  }
-  
-  #pin-form textarea, #pin-form select, #pin-form button {
-    padding: 10px;
-    border-radius: 8px;
-    border: 1px solid #ddd;
-    margin: 5px 0;
-  }
-  
-  #pin-form textarea {
-    width: 100%;  /* Que ocupe todo el espacio disponible */
-    height: 60px;
-    resize: none;  /* Desactivar redimensionamiento */
-  }
-  
-  #pin-form button {
-    background-color: #ff66b2;
-    color: white;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  #pin-form button:hover {
-    background-color: #ff3385;
-  }
-  
+#board {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.pin {
+  position: relative;
+  padding: 8px;
+  background: #f9f9f9;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+  overflow: hidden;
+}
+
+/* Que la imagen o audio escale bien dentro */
+.pin img, .pin audio {
+  max-width: 100%;
+  max-height: 100%;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Botón de eliminar */
+.delete-btn {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  background-color: crimson;
+  color: white;
+  border: none;
+  padding: 2px 6px;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 50%;
+}

@@ -35,3 +35,14 @@ app.post('/pins', async (req, res) => {
 app.listen(port, () => {
   console.log(`Servidor corriendo en el puerto ${port}`);
 });
+
+app.delete('/pins/:id', async (req, res) => {
+    const { id } = req.params;
+    try {
+      await pool.query('DELETE FROM pins WHERE id = $1', [id]);
+      res.status(200).json({ success: true });
+    } catch (err) {
+      res.status(500).json({ error: err.message });
+    }
+  });
+  
