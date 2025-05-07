@@ -70,10 +70,12 @@ document.getElementById('show-menu').addEventListener('click', () => {
   const pinForm = document.getElementById('pin-form');
   const plusBtn = document.getElementById('show-menu');
 
+  // Alternar la visibilidad del formulario
   pinForm.classList.toggle('show');
+
+  // Rotar el botón "+"
   plusBtn.classList.toggle('rotate');
 });
-
 
 document.getElementById('add-pin').addEventListener('click', async () => {
   const type = document.getElementById('pin-type').value;
@@ -88,9 +90,9 @@ document.getElementById('add-pin').addEventListener('click', async () => {
 
   // Limpiar y ocultar el formulario
   document.getElementById('pin-content').value = '';
-  document.getElementById('pin-form').style.display = 'none';
-  document.getElementById('pin-form').style.opacity = '0';
-
+  document.getElementById('pin-form').classList.remove('show');
+  document.getElementById('show-menu').classList.remove('rotate');
+  
   fetchPins();
 });
 

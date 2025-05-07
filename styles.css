@@ -75,12 +75,13 @@ body {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  background: white;
+  z-index: 1000;
+  background-color: white;  /* Vuelve a agregar el color de fondo */
   padding: 12px;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  text-align: center;
 }
+
 
 .plus-button {
   font-size: 40px;
@@ -101,18 +102,21 @@ body {
   transform: scale(1.1);
 }
 
+.plus-button.rotate {
+  transform: rotate(45deg);
+}
+
 .pin-form {
-  display: flex;
+  display: none; /* Inicialmente oculto */
   flex-direction: column;
   gap: 8px;
   max-width: 400px;
-  opacity: 0;
-  transform: scale(0.95);
-  pointer-events: none;
   transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
+/* Mostrar formulario cuando se haga clic en el botón "+" */
 .pin-form.show {
+  display: flex; /* Mostrar el formulario */
   opacity: 1;
   transform: scale(1);
   pointer-events: auto;
@@ -145,60 +149,25 @@ body {
   background-color: #ff3385;
 }
 
-.plus-button.rotate {
-  transform: rotate(45deg);
-}
-
-.main-title {
-  font-family: 'Sour Gummy', sans-serif;
-  font-size: 4rem;
-  font-weight: 600;
-  color: lightcoral;
-  margin-top: 30px;
-  margin-bottom: 10px;
-  text-align: center;
-}
-
-
+/* Estilos para dispositivos móviles */
 @media (max-width: 600px) {
-  body {
-    padding: 10px;
-  }
-
-  .main-title {
-    font-size: 1.5rem;
-    margin: 20px 0 10px;
-  }
-
-  #board {
-    gap: 12px;
-    padding: 10px;
-  }
-
-  .pin {
-    width: 90vw !important;
-    min-height: 120px;
-    max-height: none;
-  }
-
-  .text-pin {
-    font-size: 0.95rem;
-    padding: 15px;
-  }
-
   #new-pin {
-    width: 90vw;
-    right: 5vw;
-    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    right: auto;
+    width: 55vw;
+    padding: 10px;
   }
 
   .plus-button {
-    width: 50px;
-    height: 50px;
-    font-size: 32px;
+    width: 45px;
+    height: 45px;
+    font-size: 28px;
   }
 
   .pin-form {
-    max-width: 100%;
+    align-items: center;
+    margin: 10px;
+    max-width: 90%;
   }
 }
