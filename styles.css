@@ -1,35 +1,132 @@
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background: #fff0f6;  /* Rosa suave */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+}
+
 #board {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 16px;
+  padding: 20px;
+  max-width: 960px;
+  justify-content: center;
 }
 
 .pin {
   position: relative;
-  padding: 8px;
-  background: #f9f9f9;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+  background: #f5f5dc;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  word-wrap: break-word;
+  transition: transform 0.2s ease-in-out;
   overflow: hidden;
+
+  /* Estas propiedades serán sobrescritas dinámicamente por JS para tamaño aleatorio */
+  width: 200px;
+  height: auto;
+  min-height: 150px;
+  max-height: 300px;
 }
 
-/* Que la imagen o audio escale bien dentro */
+.pin:hover {
+  transform: scale(1.05);
+}
+
 .pin img, .pin audio {
   max-width: 100%;
   max-height: 100%;
+  border-radius: 8px;
   display: block;
   margin: 0 auto;
 }
 
-/* Botón de eliminar */
-.delete-btn {
-  position: absolute;
-  top: 4px;
-  right: 4px;
-  background-color: crimson;
+#new-pin {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: white;
+  padding: 12px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.plus-button {
+  font-size: 40px;
+  width: 60px;
+  height: 60px;
+  background-color: #fff0f6;
+  color: #ff66b2;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.plus-button:hover {
+  background-color: #ff66b2;
+  color: white;
+  transform: scale(1.1);
+}
+
+.pin-form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  opacity: 0;
+  transition: opacity 0.4s ease-in-out;
+  max-width: 400px;
+}
+
+#pin-form {
+  opacity: 1;
+}
+
+#pin-form textarea,
+#pin-form select,
+#pin-form button {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  margin: 5px 0;
+}
+
+#pin-form textarea {
+  width: 100%;
+  height: 60px;
+  resize: none;
+}
+
+#pin-form button {
+  background-color: #ff66b2;
   color: white;
   border: none;
-  padding: 2px 6px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#pin-form button:hover {
+  background-color: #ff3385;
+}
+
+.delete-btn {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  background-color: lightcoral;
+  color: white;
+  border: none;
+  padding: 4px 8px;
   cursor: pointer;
   font-weight: bold;
   border-radius: 50%;
+  font-size: 16px;
+  line-height: 1;
 }
