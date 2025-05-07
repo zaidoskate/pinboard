@@ -34,12 +34,13 @@ async function fetchPins() {
       div.appendChild(audio);
     } else if (p.type === 'youtube') {
       const iframe = document.createElement('iframe');
-      iframe.width = 0;
-      iframe.height = 0;
-      iframe.src = `https://www.youtube.com/embed/${p.content}?enablejsapi=1&controls=0`;
-      iframe.allow = 'autoplay';
+      iframe.width = '100%';
+      iframe.height = '200';
+      iframe.src = `https://www.youtube.com/embed/${p.content}?enablejsapi=1&controls=1`;
+      iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+      iframe.allowFullscreen = true;
+      iframe.frameBorder = '0';
       div.appendChild(iframe);
-
       const playBtn = document.createElement('button');
       playBtn.textContent = '▶️ Escuchar audio';
       playBtn.addEventListener('click', () => {
